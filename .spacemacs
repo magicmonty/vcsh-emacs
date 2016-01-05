@@ -35,12 +35,14 @@
      github
      go
      haskell
+     sonic-pi
+     (osx :variables osx-use-option-as-meta nil)
      (latex :variables latex-build-command "LatexMk"))
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(highlight dash osc sonic-pi)
+   dotspacemacs-additional-packages '(highlight dash osc)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -158,6 +160,7 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
    )
+
   ;; User initialization goes here
   (setq tramp-ssh-controlmaster-options
       "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -172,7 +175,7 @@ layers configuration."
   (setq-default evil-escape-delay 0.5)
   (setq-default dotspacemacs-configuration-layers '(osx))
   (setq-default dotspacemacs-line-numbers 'relative)
-
+  (setq sonic-pi-application-directory "~/src/sonic-pi-app/")
   (set-frame-parameter (selected-frame) 'alpha '(85 50))
   (add-to-list 'default-frame-alist '(alpha 85 50))
 
@@ -202,11 +205,6 @@ layers configuration."
   (setq load-path (cons "~/tidal/" load-path))
   (require 'tidal)
   (setq tidal-interpreter "/usr/local/bin/ghci")
-  (setq sonic-pi-path "~/src/sonic-pi/")
-  (add-hook 'sonic-pi-mode-hook
-            (lambda ()
-              ;; This setq can go here if you wish
-              (define-key ruby-mode-map "\C-c\C-b" 'sonic-pi-stop-all)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
