@@ -17,7 +17,8 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
      emacs-lisp
      git
@@ -36,6 +37,7 @@
      go
      haskell
      sonic-pi
+     dash
      (osx :variables osx-use-option-as-meta nil)
      (latex :variables latex-build-command "LatexMk"))
    ;; List of additional packages that will be installed without being
@@ -205,6 +207,29 @@ layers configuration."
   (setq load-path (cons "~/tidal/" load-path))
   (require 'tidal)
   (setq tidal-interpreter "/usr/local/bin/ghci")
+
+  ;; key bindings
+  (when (eq system-type 'darwin) ;; mac specific settings
+    (setq mac-option-modifier nil)
+    (setq mac-command-modifier 'meta)
+    (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+    )
+
+  ;; ;; (define-key (org-mode-map))
+  ;; ;; (global-set-key (kbd "A-RET") 'org-insert-heading)
+  ;; (global-set-key (kbd "A-down") 'org-metadown)
+  ;; (global-set-key (kbd "A-up") 'org-metaup)
+  ;; (global-set-key (kbd "A-left") 'org-metaleft)
+  ;; (global-set-key (kbd "A-right") 'org-metaright)
+  ;; (global-set-key (kbd "A-S-down") 'org-shiftmetadown)
+  ;; (global-set-key (kbd "A-S-up") 'org-shiftmetaup)
+  ;; (global-set-key (kbd "A-S-left") 'org-shiftmetaleft)
+  ;; (global-set-key (kbd "A-S-right") 'org-shiftmetaright)
+  ;; (global-set-key (kbd "C-A-S-left") 'org-decrease-number-at-point)
+  ;; (global-set-key (kbd "C-A-S-right") 'org-increase-number-at-point)
+  ;; (global-set-key (kbd "M-S-return") 'org-insert-todo-heading)
+  ;; (global-set-key (kbd "M-return") 'org-meta-return)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
